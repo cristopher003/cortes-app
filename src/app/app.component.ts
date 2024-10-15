@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataCortes } from './interfaces/cortes.interface';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'cortes-app';
+
+  searchData: DataCortes ={} as DataCortes;
+
+  onBuscar(data: DataCortes) {
+    this.searchData = data;
+  }
 }

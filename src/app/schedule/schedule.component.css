@@ -1,0 +1,17 @@
+.container {
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  .calendar-event {
+    border: 1px solid #ad2121; /* Color del borde */
+    padding: 5px;
+    border-radius: 4px;
+  }
+  
+  @media (max-width: 768px) {
+    .calendar-event {
+      font-size: 0.9rem; /* Ajustar tamaño de fuente en pantallas pequeñas */
+    }
+  }
+  
