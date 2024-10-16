@@ -26,6 +26,7 @@ export class ScheduleComponent implements OnChanges     {
   ngOnChanges() {
   
     if (this.searchData && Object.keys(this.searchData).length > 0) {
+      this.events = [];
       this.prepareEvents();
       this.calculateNextCut();
       this.cdr.detectChanges();
