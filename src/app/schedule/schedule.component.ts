@@ -27,6 +27,7 @@ export class ScheduleComponent implements OnChanges     {
   
     if (this.searchData && Object.keys(this.searchData).length > 0) {
       this.events = [];
+      this.cutsByDay = {};
       this.prepareEvents();
       this.calculateNextCut();
       this.cdr.detectChanges();
