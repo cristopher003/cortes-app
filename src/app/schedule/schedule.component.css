@@ -1,17 +1,36 @@
-.container {
+.results{
     max-width: 800px;
     margin: auto;
   }
-  
+  /*
   .calendar-event {
-    border: 1px solid #ad2121; /* Color del borde */
+    border: 1px solid #ad2121; /* Color del borde 
     padding: 5px;
     border-radius: 4px;
-  }
+  }*/
   
   @media (max-width: 768px) {
     .calendar-event {
       font-size: 0.9rem; /* Ajustar tamaño de fuente en pantallas pequeñas */
     }
+  }
+
+  .card {
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  h2 {
+    color: #0056b3; /* Color personalizado para el título */
+  }
+  
+
+  .scroll-container{
+    overflow: auto;
+    max-height: 550px ;
   }
   

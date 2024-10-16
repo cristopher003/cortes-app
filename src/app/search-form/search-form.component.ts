@@ -32,10 +32,18 @@ export class SearchFormComponent {
     this.consultaService.consultar(this.consulta, this.criterio).subscribe({
       next: (data) => {
         console.log('Respuesta de la API:', data);
+        if (data.resp==="ERROR") {
+          this.alertaMensaje = data.mensaje;
+          this.alertaVisible = true;
+          this.buscar.emit({} as DataCortes);
+          return;
+          
+        }
         this.buscar.emit(data);
+        this.alertaVisible = false;
       },
       error: (error) => {
-        this.alertaMensaje = error.message; // Mensaje del servicio
+        this.alertaMensaje = error.message; 
         this.alertaVisible = true;
       }
     });
