@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AppService } from '../app.service';
 import { DataCortes } from '../interfaces/cortes.interface';
 
@@ -7,7 +7,7 @@ import { DataCortes } from '../interfaces/cortes.interface';
   templateUrl: './search-form.component.html',
   styleUrl: './search-form.component.css'
 })
-export class SearchFormComponent {
+export class SearchFormComponent implements OnInit {
   consulta: string = '';
   criterio: string = '';
   alertaVisible: boolean = false;
@@ -51,5 +51,21 @@ export class SearchFormComponent {
 
   ocultarAlerta() {
     this.alertaVisible = false;
+  }
+
+
+  ngOnInit() {
+    const darkModeEnabled = localStorage.getItem('darkMode') === 'true';
+    if (darkModeEnabled) {
+      document.body.classList.add('dark-mode');
+    }else{
+      document.body.classList.remove('dark-mode');
+    }
+  }
+
+  toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    localStorage.setItem('darkMode', isDarkMode.toString());
   }
 }

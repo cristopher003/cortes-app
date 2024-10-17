@@ -4,10 +4,107 @@
 
 
 body{
-    background-color: #e6f2fd38 !important;
+    background-color: #e6f2fd38 ;
 }
 
   
 .cal-open-day-events {
     background-color: #679d97 !important;
+  }
+
+
+  /* styles.css */
+
+body.dark-mode {
+    background-color: #121212e5; /* Color de fondo oscuro */
+    color: #ffffff; /* Color de texto claro */
+  }
+  
+  .dark-mode .navbar {
+    background-color: #1a1a1a; /* Color de la barra de navegación */
+  }
+  
+  .dark-mode .card {
+    background-color: #2a2a2a; /* Color de las tarjetas */
+    border-color: #6e6e6e; 
+  }
+
+
+  /* Botones en modo oscuro */
+.dark-mode .btn {
+    background-color: #444444; /* Fondo del botón */
+    color: #ffffff; /* Color del texto */
+ 
+  }
+  
+  .dark-mode .btn:hover {
+    background-color: #555555; /* Fondo del botón al pasar el ratón */
+    border-color: #777777; /* Borde al pasar el ratón */
+  }
+  
+  .dark-mode .btn-primary {
+    background-color: #007bff; /* Color de fondo para el botón primario */
+    border-color: #007bff; /* Borde del botón primario */
+  }
+  
+  .dark-mode .btn-primary:hover {
+    background-color: #0056b3; /* Fondo del botón primario al pasar el ratón */
+    border-color: #004085; /* Borde al pasar el ratón */
+  }
+  
+  .dark-mode .text-secondary {
+    color: #f8fcff !important;  /* Color del texto secundario */
+  }
+
+  /* Encabezados en modo oscuro */
+.dark-mode h1 {
+    color: #ffffff; /* Color del texto para h1 */
+  }
+  
+  .dark-mode h2 {
+    color: #e0e0e0; /* Color del texto para h2 */
+  }
+  
+  .dark-mode h3 {
+    color: #cccccc; /* Color del texto para h3 */
+  }
+  
+  .dark-mode h4 {
+    color: #b0b0b0; /* Color del texto para h4 */
+  }
+  
+  .dark-mode h5 {
+    color: #a0a0a0; /* Color del texto para h5 */
+  }
+  
+  .dark-mode h6 {
+    color: #909090; /* Color del texto para h6 */
+  }
+  
+  .dark-mode p {
+    color: #cccccc; /* Color del texto para h6 */
+  }
+
+ 
+  
+  /* Opcional: Añadir un efecto de sombra */
+  .dark-mode h1, .dark-mode h2, .dark-mode h3 {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Sombra de texto para destacar */
+  }
+  
+  .dark-mode .cal-cell{
+    color: #909090;
+  }
+
+  
+  .dark-mode .cal-day-headers{
+    color: #909090;
+  }
+
+  .dark-mode .cal-time{
+    color: #909090;
+  }
+
+  .dark-mode .fa-lightbulb  {
+    color: #ffffff !important;
   }
