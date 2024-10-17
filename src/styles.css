@@ -1,2 +1,13 @@
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+
+
+body{
+    background-color: #e6f2fd38 !important;
+}
+
+  
+.cal-open-day-events {
+    background-color: #679d97 !important;
+  }

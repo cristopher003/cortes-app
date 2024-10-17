@@ -158,7 +158,29 @@ dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
   }
 }
 
+closeOpenMonthViewDay() {
+  this.activeDayIsOpen = false;
+}
 
+
+
+compartirPorWhatsApp() {
+  let contenido = 'Lista de Cortes:\n\n';
+  for (const day in this.cutsByDay) {
+    contenido += `${day} \n`;
+    const events = this.cutsByDay[day];
+    // console.log(`Eventos para el día ${day}:`);
+    events.forEach(event => {
+      contenido +=(`- ${event.title}  \n`);
+    });}
+
+  // Codificar el contenido para la URL
+  const mensaje = encodeURIComponent(contenido);
+  const url = `https://wa.me/?text=${mensaje}`;
+
+  // Abrir la URL en una nueva ventana
+  window.open(url);
+}
 
 startTimer() {
   this.intervalId = setInterval(() => {

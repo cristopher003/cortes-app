@@ -1,5 +1,5 @@
 <div class="container px-2 py-2">
-    <h2 class="pb-2 border-bottom">Consulta</h2>
+    <h2 class="pb-2 border-bottom"><i class="fa-solid fa-lightbulb text-secondary"></i> Consulta</h2>
     
     <div *ngIf="alertaVisible" class="alert alert-danger alert-dismissible fade show" role="alert">
       <i class="bi bi-exclamation-octagon"></i>
@@ -8,21 +8,21 @@
     </div>
     
     <div class="row g-3">   
-      <div class="col-sm-7">        
+      <div class="col-sm-6 col-md-6">        
         <input type="text" class="form-control form-control-lg" [(ngModel)]="consulta" maxlength="25" placeholder="Ingrese búsqueda">        
       </div>
   
-      <div class="col-sm-3">  
+      <div class="col-sm-6  col-md-3 ">  
         <select class="form-select form-select-lg mb-3" [(ngModel)]="criterio">
           <option value="" disabled selected>Criterio...</option>
           <option *ngFor="let crit of criterios" [value]="crit.value">{{ crit.label }}</option>
         </select>     
       </div>    
   
-      <div class="col-sm-2">
+      <div class="col-sm-12 col-md-3 ">
         <div class="d-grid gap-2">
           <button type="button" (click)="consultaCuen()" class="btn btn-primary btn-lg">
-            <i class="bi bi-search"></i> Consultar
+            <i class="fa-solid fa-magnifying-glass"></i> Consultar
           </button>
         </div>   
       </div>

@@ -1,6 +1,6 @@
 
 <div *ngIf="!hasData; else resultsTemplate">
-  <p>No hay datos de búsqueda. Realice una consulta.</p>
+  <p>No hay datos de búsqueda. Realice una consulta. <i class="fa-solid fa-face-sad-cry text-secondary"></i></p>
 </div>
 
 <ng-template  #resultsTemplate >
@@ -8,11 +8,11 @@
 
   <div class="row">
     <div class="col-sm-12 col-md-4">
-      <h2 class="text-center my-4">Calendario de Cortes</h2>
+      <h2 class="text-center my-3">Calendario de Cortes</h2>
     
       <div class="card mb-4">
         <div class="card-body">
-          <h3 class="mt-4">Detalles de Próximo Corte</h3>
+          <h3 class="mt-4">Detalles de Próximo Corte <i class="fa-solid fa-plug-circle-exclamation text-secondary"></i></h3>
           <p class="lead">{{ nextCut }}</p>
           <p class="text-muted" *ngIf="nextCutTime">{{ nextCutTime }}</p>
         </div>
@@ -20,7 +20,7 @@
     
       <div class="card">
         <div class="card-body overflow-auto" style="max-height: 250px;">
-          <h3 class="mt-4">Cortes por Día</h3>
+          <h3 class="mt-4">Cortes por Día  <a  href="#"><i  (click)="compartirPorWhatsApp()" class="fa-solid fa-share-nodes text-secondary"></i></a></h3>
           <div *ngFor="let day of (cutsByDay | keyvalue)">
             <h4 class="my-3">{{ day.key }}</h4>
             <ul class="list-group">
@@ -35,17 +35,50 @@
     
     
     <div class="col-md-8 col-sm-12 mb-2 " >
-      <div class="btn-group mb-3 mt-2" role="group">
+
+      <div class="row">
+      <div class="col-md-6 col-sm-12 mt-2">
+        <div class="btn-group" style="width: 100%;">
+          <button
+            class="btn btn-primary"
+            mwlCalendarPreviousView
+            [view]="view"
+            [(viewDate)]="viewDate"
+            (viewDateChange)="closeOpenMonthViewDay()"
+          >
+            Previous
+          </button>
+          <button
+            class="btn btn-outline-secondary"
+            mwlCalendarToday
+            [(viewDate)]="viewDate"
+          >
+            Today
+          </button>
+          <button
+            class="btn btn-primary"
+            mwlCalendarNextView
+            [view]="view"
+            [(viewDate)]="viewDate"
+            (viewDateChange)="closeOpenMonthViewDay()"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+      
+      <div class="btn-group mb-3 mt-2 col-md-6 col-sm-12" role="group">
         <button type="button"  class="btn btn-outline-primary" (click)="changeView('month')">Mes</button>
         <button type="button" class="btn btn-outline-primary" (click)="changeView('week')">Semana</button>
         <button type="button" class="btn btn-outline-primary" (click)="changeView('day')">Día</button>
       </div>
     
-      <div class="results scroll-container" #scrollContainer  >
+      <div class="results scroll-container  col-12" #scrollContainer  >
       <mwl-calendar-month-view  *ngIf="view === 'month'" (dayClicked)="dayClicked($event.day)"  [activeDayIsOpen]="activeDayIsOpen"  [viewDate]="viewDate" [events]="events"></mwl-calendar-month-view>
       <mwl-calendar-week-view *ngIf="view === 'week'" [viewDate]="viewDate" [events]="events"></mwl-calendar-week-view>
       <mwl-calendar-day-view *ngIf="view === 'day'" [viewDate]="viewDate" [events]="events"></mwl-calendar-day-view>
       </div>
+    </div>
     </div>
     </div>
 
