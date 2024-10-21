@@ -1,3 +1,5 @@
+<div class="card mt-3 px-2">
+  <div class="card-body">
 
 <div *ngIf="!hasData; else resultsTemplate">
   <p>No hay datos de búsqueda. Realice una consulta. <i class="fa-solid fa-face-sad-cry text-secondary"></i></p>
@@ -7,20 +9,29 @@
 
 
   <div class="row">
-    <div class="col-sm-12 col-md-4">
+    <div class="col-sm-12 col-md-12 col-lg-4">
       <h2 class="text-center my-3">Calendario de Cortes</h2>
     
       <div class="card mb-4">
         <div class="card-body">
-          <h3 class="mt-4">Detalles de Próximo Corte <i class="fa-solid fa-plug-circle-exclamation text-secondary"></i></h3>
+          <h3 class="mt-2">Detalles de Corte <i class="fa-solid fa-plug-circle-exclamation text-secondary"></i></h3>
+          <p class="lead">{{place}}</p>
           <p class="lead">{{ nextCut }}</p>
-          <p class="text-muted" *ngIf="nextCutTime">{{ nextCutTime }}</p>
+          <h3>Próximo corte:</h3>
+          <h5><span class="badge bg-primary "> {{ nextCutDate }}</span></h5> 
+          <h5 class="fw-bold text-truncate w-100" *ngIf="nextCutTime">
+           <span class="badge text-bg-danger"> {{ nextCutTime }}</span>
+          </h5>
         </div>
       </div>
     
       <div class="card">
         <div class="card-body overflow-auto" style="max-height: 250px;">
-          <h3 class="mt-4">Cortes por Día  <a  href="#"><i  (click)="compartirPorWhatsApp()" class="fa-solid fa-share-nodes text-secondary"></i></a></h3>
+          <h3 class="mt-4">Cortes por Día  <a 
+            data-bs-toggle="tooltip" data-bs-placement="top" title="Compartir por WhatsApp"
+            href="#"><i  (click)="compartirPorWhatsApp()"
+             class="fa-solid fa-share-nodes text-secondary"></i></a>
+            </h3>
           <div *ngFor="let day of (cutsByDay | keyvalue)">
             <h4 class="my-3">{{ day.key }}</h4>
             <ul class="list-group">
@@ -34,7 +45,7 @@
     </div>
     
     
-    <div class="col-md-8 col-sm-12 mb-2 " >
+    <div class="col-md-12 col-lg-8 col-sm-12 mb-2 " >
 
       <div class="row">
       <div class="col-md-6 col-sm-12 mt-2">
@@ -46,14 +57,14 @@
             [(viewDate)]="viewDate"
             (viewDateChange)="closeOpenMonthViewDay()"
           >
-            Previous
+            Anterior
           </button>
           <button
             class="btn btn-outline-secondary"
             mwlCalendarToday
             [(viewDate)]="viewDate"
           >
-            Today
+            Hoy
           </button>
           <button
             class="btn btn-primary"
@@ -62,7 +73,7 @@
             [(viewDate)]="viewDate"
             (viewDateChange)="closeOpenMonthViewDay()"
           >
-            Next
+            Siguiente
           </button>
         </div>
       </div>
@@ -85,3 +96,5 @@
 
 </ng-template>
 
+  </div>
+</div>

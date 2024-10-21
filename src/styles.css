@@ -7,7 +7,10 @@ body{
     background-color: #e6f2fd38 ;
 }
 
-  
+.card {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
 .cal-open-day-events {
     background-color: #679d97 !important;
   }
@@ -85,7 +88,9 @@ body.dark-mode {
     color: #cccccc; /* Color del texto para h6 */
   }
 
- 
+  .dark-mode label {
+    color: #a0a0a0; /* Color del texto para h5 */
+  }
   
   /* Opcional: Añadir un efecto de sombra */
   .dark-mode h1, .dark-mode h2, .dark-mode h3 {
@@ -108,3 +113,8 @@ body.dark-mode {
   .dark-mode .fa-lightbulb  {
     color: #ffffff !important;
   }
+
+  .cal-day-number{
+    font-weight: 500 !important;
+  }
+

@@ -2,7 +2,7 @@ import {  ChangeDetectorRef, Component, ElementRef, Input, OnChanges } from '@an
 import {  CalendarEvent, CalendarMonthViewDay } from 'angular-calendar';
 import moment from 'moment';
 import { DataCortes, DetallePlanificacion } from '../interfaces/cortes.interface';
-import { differenceInMinutes, isSameDay, isSameMonth, startOfDay, startOfHour } from 'date-fns';
+import { isSameDay, isSameMonth } from 'date-fns';
 
 @Component({
   selector: 'app-schedule',
@@ -16,10 +16,12 @@ export class ScheduleComponent implements OnChanges     {
   cutsByDay: Record<string, CalendarEvent[]> = {};
   nextCut: string = '';
   nextCutTime: string = '';
+  nextCutDate: string = '';
   private intervalId: any;
   @Input() searchData: DataCortes = {} as DataCortes;
   hasData: boolean = false;
   activeDayIsOpen: boolean=false;
+  place:string='';
  
   constructor(private cdr: ChangeDetectorRef, private el: ElementRef) {this.hasData=false;}
 
@@ -46,6 +48,7 @@ export class ScheduleComponent implements OnChanges     {
       notificacion.detallePlanificacion.forEach(corte => {
      
         const {start,end}=this.caculateStartEnd(corte);
+        this.place=notificacion.direccion;
 
         this.events.push({
           start,
@@ -117,20 +120,38 @@ calculateNextCut() {
 
   if (nextEvent) {
     this.nextCut = `Próximo corte: ${nextEvent.title}`;
-    this.updateNextCutTime(nextEvent.start);
+    this.updateNextCutTime(nextEvent);
   } else {
     this.nextCut = 'No hay cortes programados.';
     this.nextCutTime = '';
   }
+
+  // Verifica si se está en un corte programado
+  this.checkCurrentCuts(now);
 }
 
-updateNextCutTime(nextCutDate: Date) {
+checkCurrentCuts(now: moment.Moment) {
+  const ongoingCuts = this.events.filter(event => {
+    const start = moment(event.start);
+    const end = moment(event.end); 
+    return now.isBetween(start, end, null, '[]'); // '[]' incluye los límites
+  });
+
+  if (ongoingCuts.length > 0) {
+    this.nextCut = 'Actualmente hay un corte en curso: '+ongoingCuts[0].title;
+  }
+
+}
+
+
+updateNextCutTime(nextCutDate: CalendarEvent) {
   const now = moment();
-  const duration = moment.duration(moment(nextCutDate).diff(now));
+  const duration = moment.duration(moment(nextCutDate.start).diff(now));
   const hours = Math.floor(duration.asHours());
   const minutes = Math.floor(duration.asMinutes()) % 60;
 
   this.nextCutTime = `Faltan ${hours} horas y ${minutes} minutos.`;
+  this.nextCutDate = moment(nextCutDate.start).format('DD-MM-YYYY HH:mm')+ ' - '+moment(nextCutDate.end).format('DD-MM-YYYY HH:mm');
 }
 
 
@@ -169,7 +190,7 @@ compartirPorWhatsApp() {
   for (const day in this.cutsByDay) {
     contenido += `${day} \n`;
     const events = this.cutsByDay[day];
-    // console.log(`Eventos para el día ${day}:`);
+   
     events.forEach(event => {
       contenido +=(`- ${event.title}  \n`);
     });}

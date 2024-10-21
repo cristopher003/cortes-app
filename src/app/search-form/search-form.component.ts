@@ -31,7 +31,7 @@ export class SearchFormComponent implements OnInit {
 
     this.consultaService.consultar(this.consulta, this.criterio).subscribe({
       next: (data) => {
-        console.log('Respuesta de la API:', data);
+      
         if (data.resp==="ERROR") {
           this.alertaMensaje = data.mensaje;
           this.alertaVisible = true;
